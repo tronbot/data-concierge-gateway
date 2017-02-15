@@ -11,15 +11,10 @@ import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.messaging.Source
-import org.springframework.context.annotation.Bean
 import org.springframework.hateoas.Resources
 import org.springframework.integration.annotation.Gateway
-import org.springframework.integration.annotation.InboundChannelAdapter
 import org.springframework.integration.annotation.IntegrationComponentScan
 import org.springframework.integration.annotation.MessagingGateway
-import org.springframework.integration.annotation.Poller
-import org.springframework.integration.core.MessageSource
-import org.springframework.messaging.support.MessageBuilder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -87,7 +82,7 @@ interface ReservationReader{
 
 @MessagingGateway
 interface ReservationWriter{
-	@Gateway(requestChannel = 'output')
+	@Gateway(requestChannel = Source.OUTPUT)
 	void write(String reservationName)
 }
 

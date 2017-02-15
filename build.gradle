@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.3.RELEASE'
+		springBootVersion = '2.0.0.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
@@ -31,6 +31,7 @@ repositories {
 
 
 dependencies {
+	compile project(':data-concierge-commons')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
@@ -44,7 +45,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.codehaus.groovy:groovy')
+	compile('org.codehaus.groovy:groovy:2.4.8')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

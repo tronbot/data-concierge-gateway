@@ -1,0 +1,2 @@
+include ':data-concierge-commons'
+project(':data-concierge-commons').projectDir = new File(settingsDir, '../data-concierge-commons')

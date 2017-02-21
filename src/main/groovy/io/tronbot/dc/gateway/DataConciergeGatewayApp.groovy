@@ -36,8 +36,8 @@ interface DataConciergeServiceClient{
 	@GetMapping('/reconciliation/hospital')
 	ResponseEntity hospital(@RequestParam('q') String keywords)
 
-	@GetMapping('/reconciliation/doctor')
-	ResponseEntity doctor(@RequestParam('q') String keywords)
+	@GetMapping('/reconciliation/physician')
+	ResponseEntity physician(@RequestParam('q') String keywords)
 
 	@GetMapping('/reconciliation/business')
 	ResponseEntity business(@RequestParam('q') String keywords)
@@ -68,9 +68,9 @@ class DataConciergeGateway{
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
-	@GetMapping('/reconciliation/doctor')
-	ResponseEntity doctor(@RequestParam('q') String keywords){
-		return dataConciergeService.doctor(keywords);
+	@GetMapping('/reconciliation/physician')
+	ResponseEntity physician(@RequestParam('q') String keywords){
+		return dataConciergeService.physician(keywords);
 	}
 
 	private Collection<String> fallback(){

@@ -24,7 +24,6 @@ import groovy.util.logging.Log4j
 @EnableCircuitBreaker
 @SpringBootApplication
 class DataConciergeGatewayApp {
-
 	static void main(String[] args) {
 		SpringApplication.run DataConciergeGatewayApp, args
 	}
@@ -33,14 +32,14 @@ class DataConciergeGatewayApp {
 @FeignClient('data-concierge-service')
 interface DataConciergeServiceClient{
 
-	@GetMapping('/reconciliation/hospital')
-	ResponseEntity hospital(@RequestParam('q') String keywords)
+	@GetMapping('/reconciliation/places')
+	ResponseEntity places(@RequestParam('q') String keywords)
 
-	@GetMapping('/reconciliation/physician')
-	ResponseEntity physician(@RequestParam('q') String keywords)
+	@GetMapping('/reconciliation/hospitals')
+	ResponseEntity hospitals(@RequestParam('q') String keywords)
 
-	@GetMapping('/reconciliation/business')
-	ResponseEntity business(@RequestParam('q') String keywords)
+	@GetMapping('/reconciliation/physicians')
+	ResponseEntity physicians(@RequestParam('q') String keywords)
 }
 
 @RestController
@@ -56,21 +55,21 @@ class DataConciergeGateway{
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
-	@GetMapping('/reconciliation/business')
-	ResponseEntity business(@RequestParam('q') String keywords){
-		return dataConciergeService.business(keywords);
+	@GetMapping('/reconciliation/places')
+	ResponseEntity places(@RequestParam('q') String keywords){
+		return dataConciergeService.places(keywords);
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
-	@GetMapping('/reconciliation/hospital')
-	ResponseEntity hospital(@RequestParam('q') String keywords){
-		return dataConciergeService.hospital(keywords);
+	@GetMapping('/reconciliation/hospitals')
+	ResponseEntity hospitals(@RequestParam('q') String keywords){
+		return dataConciergeService.hospitals(keywords);
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
-	@GetMapping('/reconciliation/physician')
-	ResponseEntity physician(@RequestParam('q') String keywords){
-		return dataConciergeService.physician(keywords);
+	@GetMapping('/reconciliation/physicians')
+	ResponseEntity physicians(@RequestParam('q') String keywords){
+		return dataConciergeService.physicians(keywords);
 	}
 
 	private Collection<String> fallback(){

@@ -11,6 +11,7 @@ import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -40,6 +41,9 @@ interface DataConciergeServiceClient{
 
 	@GetMapping('/reconciliation/physicians')
 	ResponseEntity physicians(@RequestParam('q') String keywords)
+
+	@GetMapping('/reconciliation/npi/{id}')
+	ResponseEntity npi(@PathVariable('id') String id)
 }
 
 @RestController
@@ -57,19 +61,25 @@ class DataConciergeGateway{
 	@HystrixCommand(fallbackMethod = 'fallback')
 	@GetMapping('/reconciliation/places')
 	ResponseEntity places(@RequestParam('q') String keywords){
-		return dataConciergeService.places(keywords);
+		return dataConciergeService.places(keywords)
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
 	@GetMapping('/reconciliation/hospitals')
 	ResponseEntity hospitals(@RequestParam('q') String keywords){
-		return dataConciergeService.hospitals(keywords);
+		return dataConciergeService.hospitals(keywords)
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')
 	@GetMapping('/reconciliation/physicians')
 	ResponseEntity physicians(@RequestParam('q') String keywords){
-		return dataConciergeService.physicians(keywords);
+		return dataConciergeService.physicians(keywords)
+	}
+
+	@HystrixCommand(fallbackMethod = 'fallback')
+	@GetMapping('/reconciliation/npi/{id}')
+	ResponseEntity npi(@PathVariable('id') String id){
+		return dataConciergeService.npi(id)
 	}
 
 	private Collection<String> fallback(){

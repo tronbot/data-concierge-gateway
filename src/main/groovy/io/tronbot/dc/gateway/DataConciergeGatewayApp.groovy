@@ -40,14 +40,7 @@ interface DataConciergeServiceClient{
 	ResponseEntity hospitals(@RequestParam('q') String keywords)
 
 	@GetMapping('/reconciliation/physicians')
-	ResponseEntity physicians(
-			@RequestParam(value='firstName') String firstName,
-			@RequestParam(value='lastName') String lastName,
-			@RequestParam(value='address') String address,
-			@RequestParam(value='city') String city,
-			@RequestParam(value='state') String state,
-			@RequestParam(value='postalCode', required=false) String postalCode,
-			@RequestParam(value='phoneNumber', required=false) String phoneNumber)
+	ResponseEntity physicians(@RequestParam('q') String keywords)
 
 	@GetMapping('/reconciliation/npi/{id}')
 	ResponseEntity npi(@PathVariable('id') String id)
@@ -79,15 +72,8 @@ class DataConciergeGateway{
 
 	@HystrixCommand(fallbackMethod = 'fallback')
 	@GetMapping('/reconciliation/physicians')
-	ResponseEntity physicians(
-			@RequestParam(value='firstName') String firstName,
-			@RequestParam(value='lastName') String lastName,
-			@RequestParam(value='address') String address,
-			@RequestParam(value='city') String city,
-			@RequestParam(value='state') String state,
-			@RequestParam(value='postalCode', required=false) String postalCode,
-			@RequestParam(value='phoneNumber', required=false) String phoneNumber){
-		return dataConciergeService.physicians(firstName,lastName,address,city,state,postalCode,phoneNumber)
+	ResponseEntity physicians(@RequestParam('q') String keywords){
+		return dataConciergeService.physicians(keywords)
 	}
 
 	@HystrixCommand(fallbackMethod = 'fallback')

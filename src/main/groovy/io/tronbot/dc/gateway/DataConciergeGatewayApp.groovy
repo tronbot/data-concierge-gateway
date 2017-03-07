@@ -82,7 +82,7 @@ class DataConciergeGateway{
 		return dataConciergeService.npi(id)
 	}
 
-	private Collection<String> fallback(){
+	private Collection<String> fallback(String input){
 		return []
 	}
 }

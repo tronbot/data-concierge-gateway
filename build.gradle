@@ -31,7 +31,6 @@ repositories {
 
 
 dependencies {
-	//compile project(':data-concierge-commons')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-eureka')
@@ -41,11 +40,9 @@ dependencies {
 	//compile('org.springframework.cloud:spring-cloud-starter-zipkin')
 	//compile('org.springframework.cloud:spring-cloud-starter-stream-kafka')
 	compile('org.springframework.cloud:spring-cloud-starter-zuul')
-	//compile('org.springframework.boot:spring-boot-starter-hateoas')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile('org.codehaus.groovy:groovy:2.4.8')
+	compile('org.codehaus.groovy:groovy:2.4.9')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -54,12 +51,3 @@ dependencyManagement {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.BUILD-SNAPSHOT"
 	}
 }
-
-/*
-jar {
-  manifest {
-    attributes(
-      "Class-Path": configurations.compile.collect { it.getName() }.join(' '))
-  }
-}
-*/

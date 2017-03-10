@@ -10,3 +10,14 @@ spring:
                 max-attempts: 100
             uri: http://localhost:8888
             label: master
+eureka:
+    instance:
+        prefer-ip-address: true
+    client:
+        enabled: true
+        healthcheck: 
+            enabled: true
+        registerWithEureka: true
+        fetchRegistry: true
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka

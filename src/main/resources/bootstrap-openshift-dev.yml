@@ -1,9 +1,9 @@
 spring:
     cloud:
         config:
-            uri: http://config-service-data-concierge.192.168.62.185.xip.io/
+            uri: http://data-concierge-config-service.192.168.62.185.xip.io/
             label: openshift-dev
 eureka:
     client:
         serviceUrl:
-            defaultZone: http://eureka-service-data-concierge.192.168.62.185.xip.io/eureka
+            defaultZone: http://data-concierge-eureka-service.192.168.62.185.xip.io/eureka
